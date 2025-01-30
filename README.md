@@ -48,12 +48,12 @@ $ ptp4l -v
 
 To alias all the apps:
 ```bash
-sudo snap alias linuxptp.ptp4l ptp4l
 sudo snap alias linuxptp.hwstamp-ctl hwstamp_ctl
 sudo snap alias linuxptp.nsm nsm
 sudo snap alias linuxptp.phc-ctl phc_ctl
 sudo snap alias linuxptp.phc2sys phc2sys
 sudo snap alias linuxptp.pmc pmc
+sudo snap alias linuxptp.ptp4l ptp4l
 sudo snap alias linuxptp.timemaster timemaster
 sudo snap alias linuxptp.ts2phc ts2phc
 sudo snap alias linuxptp.tz2alt tz2alt
