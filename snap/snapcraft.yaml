@@ -71,16 +71,20 @@ parts:
 
 apps:
   hwstamp-ctl: # renamed to bypass character restrictions
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/hwstamp_ctl
     plugs:
       - home
       - network-bind
       - network-control
   nsm:
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/nsm
     plugs:
       - home
@@ -89,8 +93,10 @@ apps:
       # Access to PTP subsystem and files
       - ptp
   phc-ctl: # renamed to bypass character restrictions
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/phc_ctl
     plugs:
       - home
@@ -105,8 +111,10 @@ apps:
       - log-observe
 
   phc2sys:
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/phc2sys
     plugs:
       - home
@@ -121,8 +129,10 @@ apps:
       - log-observe
 
   pmc:
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/pmc
     plugs:
       - home
@@ -131,8 +141,10 @@ apps:
       # Access to PTP subsystem and files
       - ptp
   ptp4l:
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/ptp4l
     plugs:
       - home
@@ -145,8 +157,10 @@ apps:
       - ptp
 
   timemaster:
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/timemaster
     plugs:
       - home
@@ -156,8 +170,10 @@ apps:
       - ptp
 
   ts2phc:
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/ts2phc
     plugs:
       - home
@@ -171,8 +187,10 @@ apps:
       - system-backup
       - log-observe
   tz2alt:
-    command-chain: 
-      - bin/preload-wrapper.sh
+    # command-chain: 
+    #   - bin/preload-wrapper.sh
+    environment:
+      LD_PRELOAD: $SNAP/linuxptp-testsuite/clknetsim/clknetsim.so
     command: usr/local/sbin/tz2alt
     plugs:
       - home
