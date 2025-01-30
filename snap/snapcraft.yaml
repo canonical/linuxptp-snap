@@ -8,6 +8,9 @@ adopt-info: linuxptp
 grade: devel
 confinement: strict
 
+environment:
+  LD_PRELOAD: $CLKNETSIM_SO_PATH
+
 parts:
   local:
     plugin: nil
@@ -56,7 +59,6 @@ parts:
 
 apps:
   hwstamp-ctl: # renamed to bypass character restrictions
-    extensions: [ env-injector ]
     command: usr/local/sbin/hwstamp_ctl
     plugs:
       - home
@@ -64,7 +66,6 @@ apps:
       - network-control
 
   nsm:
-    extensions: [ env-injector ]
     command: usr/local/sbin/nsm
     plugs:
       - home
@@ -74,7 +75,6 @@ apps:
       - ptp
 
   phc-ctl: # renamed to bypass character restrictions
-    extensions: [ env-injector ]
     command: usr/local/sbin/phc_ctl
     plugs:
       - home
@@ -89,7 +89,6 @@ apps:
       - log-observe
 
   phc2sys:
-    extensions: [ env-injector ]
     command: usr/local/sbin/phc2sys
     plugs:
       - home
@@ -104,7 +103,6 @@ apps:
       - log-observe
 
   pmc:
-    extensions: [ env-injector ]
     command: usr/local/sbin/pmc
     plugs:
       - home
@@ -114,7 +112,6 @@ apps:
       - ptp
 
   ptp4l:
-    extensions: [ env-injector ]
     command: usr/local/sbin/ptp4l
     plugs:
       - home
@@ -127,7 +124,6 @@ apps:
       - ptp
 
   timemaster:
-    extensions: [ env-injector ]
     command: usr/local/sbin/timemaster
     plugs:
       - home
@@ -137,7 +133,6 @@ apps:
       - ptp
 
   ts2phc:
-    extensions: [ env-injector ]
     command: usr/local/sbin/ts2phc
     plugs:
       - home
@@ -152,7 +147,6 @@ apps:
       - log-observe
 
   tz2alt:
-    extensions: [ env-injector ]
     command: usr/local/sbin/tz2alt
     plugs:
       - home
