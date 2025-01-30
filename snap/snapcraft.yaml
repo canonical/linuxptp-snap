@@ -54,16 +54,6 @@ parts:
       
       craftctl default
 
-  clknetsim:
-    plugin: nil
-    source-type: git
-    source: https://github.com/mlichvar/clknetsim.git
-    source-depth: 1
-    override-build: |
-      make
-      cp clknetsim.so $CRAFT_PART_INSTALL/
-
-
 apps:
   hwstamp-ctl: # renamed to bypass character restrictions
     extensions: [ env-injector ]
@@ -72,6 +62,7 @@ apps:
       - home
       - network-bind
       - network-control
+
   nsm:
     extensions: [ env-injector ]
     command: usr/local/sbin/nsm
@@ -81,6 +72,7 @@ apps:
       - network-control
       # Access to PTP subsystem and files
       - ptp
+
   phc-ctl: # renamed to bypass character restrictions
     extensions: [ env-injector ]
     command: usr/local/sbin/phc_ctl
@@ -120,6 +112,7 @@ apps:
       - network-control
       # Access to PTP subsystem and files
       - ptp
+
   ptp4l:
     extensions: [ env-injector ]
     command: usr/local/sbin/ptp4l
@@ -157,6 +150,7 @@ apps:
       # Access to read system logs and data
       - system-backup
       - log-observe
+
   tz2alt:
     extensions: [ env-injector ]
     command: usr/local/sbin/tz2alt
