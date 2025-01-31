@@ -251,8 +251,8 @@ sudo snap connect linuxptp:ptp
 
 ## Testing
 
-After the snap has been installed, the **linuxptp-testsuite** can be used to test it.
-This test suite uses **clknetsim** to create a simulated network with multiple nodes.
+After the snap has been installed, the [linuxptp-testsuite](https://github.com/mlichvar/linuxptp-testsuite) can be used to test it.
+This test suite uses [clknetsim](https://github.com/mlichvar/clknetsim) to create a simulated network with multiple nodes.
 To run the test suite:
 
 ```bash
