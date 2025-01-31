@@ -1,8 +1,6 @@
 name: Test Snap
 
 on:
-  schedule:
-    - cron: "20 2 * * 1" # Monday mornings 02:20 UTC
   push:
     branches: [main]
   pull_request:
@@ -10,19 +8,16 @@ on:
   # Allow manual trigger
   workflow_dispatch:
 
-env:
-  SNAP_NAME: chip-tool
-
 jobs:
   build:
-    name: Build, Test, Publish
+    name: Build and test snap
     strategy:
       matrix:
         runs:
           - architecture: amd64
             runner: ubuntu-latest
-          # - architecture: arm64
-          #   runner: [self-hosted, ARM64, Linux]
+          - architecture: arm64
+            runner: [self-hosted, ARM64, Linux]
     runs-on: ${{ matrix.runs.runner }}
 
     steps:
@@ -60,6 +55,7 @@ jobs:
           git clone https://github.com/mlichvar/clknetsim
           cd clknetsim
           make
+          # Replace LD_PRELOAD in clknetsim with our special custom env var which gets applied as LD_PRELOAD inside the snap
           sed -i -e 's/LD_PRELOAD=/CLKNETSIM_SO_PATH=/g' clknetsim.bash
 
       - name: Run tests
@@ -67,4 +63,3 @@ jobs:
         run: |
           cd ~/linuxptp-testsuite
           ./run
-          ls -r
