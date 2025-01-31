@@ -8,6 +8,10 @@ adopt-info: linuxptp
 grade: devel
 confinement: strict
 
+# If CLKNETSIM_SO_PATH is set, we LD_PRELOAD it to use clknetsim
+environment:
+  LD_PRELOAD: $CLKNETSIM_SO_PATH
+
 parts:
   local:
     plugin: nil
@@ -54,22 +58,37 @@ parts:
       
       craftctl default
 
+  # Include a copy of clknetsim.so built using the correct glibc, used for testing of the snap
+  clknetsim:
+    plugin: make
+    source-type: git
+    source: https://github.com/mlichvar/clknetsim.git
+    source-commit: 64acc4fd0ee92c2bafd9d1cf8097eb3632da685b # Has to match CLKNETSIM_VERSION in tests/run-test-suite.sh
+    override-build: |
+      make
+      cp clknetsim.so $CRAFT_PART_INSTALL/
+
 apps:
   hwstamp-ctl: # renamed to bypass character restrictions
     command: usr/local/sbin/hwstamp_ctl
     plugs:
+      - home
       - network-bind
       - network-control
+
   nsm:
     command: usr/local/sbin/nsm
     plugs:
+      - home
       - network-bind
       - network-control
       # Access to PTP subsystem and files
       - ptp
+
   phc-ctl: # renamed to bypass character restrictions
     command: usr/local/sbin/phc_ctl
     plugs:
+      - home
       - network-bind
       - network-control
       # Access to PTP subsystem and files
@@ -83,6 +102,7 @@ apps:
   phc2sys:
     command: usr/local/sbin/phc2sys
     plugs:
+      - home
       - network-bind
       - network-control
       # Access to PTP subsystem and files
@@ -96,13 +116,16 @@ apps:
   pmc:
     command: usr/local/sbin/pmc
     plugs:
+      - home
       - network-bind
       - network-control
       # Access to PTP subsystem and files
       - ptp
+
   ptp4l:
     command: usr/local/sbin/ptp4l
     plugs:
+      - home
       - network
       - network-bind
       - network-control
@@ -114,6 +137,7 @@ apps:
   timemaster:
     command: usr/local/sbin/timemaster
     plugs:
+      - home
       - network-bind
       - network-control
       # Access to PTP subsystem and files
@@ -122,6 +146,7 @@ apps:
   ts2phc:
     command: usr/local/sbin/ts2phc
     plugs:
+      - home
       - network-bind
       - network-control
       # Access to PTP subsystem and files
@@ -131,9 +156,11 @@ apps:
       # Access to read system logs and data
       - system-backup
       - log-observe
+
   tz2alt:
     command: usr/local/sbin/tz2alt
     plugs:
+      - home
       - network-bind
       - network-control
       # Access to PTP subsystem and files

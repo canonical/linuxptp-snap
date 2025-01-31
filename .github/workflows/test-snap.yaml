@@ -1,0 +1,39 @@
+name: Test Snap
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Allow manual trigger
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build and test snap
+    strategy:
+      matrix:
+        runs:
+          - architecture: amd64
+            runner: ubuntu-latest
+          - architecture: arm64
+            runner: [self-hosted, ARM64, Linux, medium]
+    runs-on: ${{ matrix.runs.runner }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build snap
+        uses: snapcore/action-build@v1
+        id: snapcraft
+
+      - name: Install snap
+        shell: bash
+        run: |
+          sudo snap install --dangerous ${{ steps.snapcraft.outputs.snap }}
+
+      - name: Run tests
+        shell: bash
+        run: |
+          tests/run-test-suite.sh
