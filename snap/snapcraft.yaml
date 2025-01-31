@@ -8,6 +8,7 @@ adopt-info: linuxptp
 grade: devel
 confinement: strict
 
+# If CLKNETSIM_SO_PATH is set, we LD_PRELOAD it to use clknetsim
 environment:
   LD_PRELOAD: $CLKNETSIM_SO_PATH
 
@@ -57,6 +58,7 @@ parts:
       
       craftctl default
 
+  # Include a copy of clknetsim.so built using the correct glibc, used for testing of the snap
   clknetsim:
     plugin: nil
     source-type: git
