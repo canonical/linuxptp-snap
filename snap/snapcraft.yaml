@@ -1,5 +1,5 @@
 name: linuxptp
-base: core24
+base: core22
 summary: Linux Precision Time Protocol (PTP)
 description: Refer to https://snapcraft.io/linuxptp
 license: GPL-2.0-or-later
