@@ -55,8 +55,8 @@ jobs:
           git clone https://github.com/mlichvar/clknetsim
           cd clknetsim
           make
-          # Replace LD_PRELOAD in clknetsim with our special custom env var which gets applied as LD_PRELOAD inside the snap
-          sed -i -e 's/LD_PRELOAD=/CLKNETSIM_SO_PATH=/g' clknetsim.bash
+          # Replace clknetsim's LD_PRELOAD with a copy of the shared object contained inside the snap, using the correct glibc version for the base
+          sed -i -e 's/LD_PRELOAD=${CLKNETSIM_PRELOAD:+$CLKNETSIM_PRELOAD:}$CLKNETSIM_PATH/CLKNETSIM_SO_PATH=\/snap\/linuxptp\/current/g' clknetsim.bash
 
       - name: Run tests
         shell: bash

@@ -57,6 +57,15 @@ parts:
       
       craftctl default
 
+  clknetsim:
+    plugin: nil
+    source-type: git
+    source: https://github.com/mlichvar/clknetsim.git
+    source-depth: 1
+    override-build: |
+      make
+      cp clknetsim.so $CRAFT_PART_INSTALL/
+
 apps:
   hwstamp-ctl: # renamed to bypass character restrictions
     command: usr/local/sbin/hwstamp_ctl
