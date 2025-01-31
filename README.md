@@ -19,6 +19,20 @@ You can verify the connections by running: `snap connections linuxptp`.
 
 To build and install from source, refer [here](#build-and-install-from-source).
 
+Installing the snap exposes the following commands on the host:
+- linuxptp.hwstamp-ctl
+- linuxptp.nsm
+- linuxptp.phc-ctl
+- linuxptp.phc2sys
+- linuxptp.pmc
+- linuxptp.ptp4l
+- linuxptp.timemaster
+- linuxptp.ts2phc
+- linuxptp.tz2alt
+
+Note that `hwstamp-ctl` and `phc-ctl` use hyphens instead of underscores.
+This is due to the character limitation in snap app names.
+
 Add [aliases](https://snapcraft.io/docs/commands-and-aliases) to run the commands without the namespace. For example:
 ```bash
 $ snap alias linuxptp.ptp4l ptp4l
@@ -30,6 +44,19 @@ $ which ptp4l
 
 $ ptp4l -v
 4.0
+```
+
+To alias all the apps:
+```bash
+sudo snap alias linuxptp.hwstamp-ctl hwstamp_ctl
+sudo snap alias linuxptp.nsm nsm
+sudo snap alias linuxptp.phc-ctl phc_ctl
+sudo snap alias linuxptp.phc2sys phc2sys
+sudo snap alias linuxptp.pmc pmc
+sudo snap alias linuxptp.ptp4l ptp4l
+sudo snap alias linuxptp.timemaster timemaster
+sudo snap alias linuxptp.ts2phc ts2phc
+sudo snap alias linuxptp.tz2alt tz2alt
 ```
 
 > [!NOTE]
