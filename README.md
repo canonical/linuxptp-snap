@@ -249,6 +249,17 @@ sudo snap connect linuxptp:ptp
 ```
 
 
+## Testing
+
+After the snap has been installed, the **linuxptp-testsuite** can be used to test it.
+This test suite uses **clknetsim** to create a simulated network with multiple nodes.
+To run the test suite:
+
+```bash
+tests/run-test-suite.sh
+```
+
+
 ## References
  - https://manpages.debian.org/unstable/linuxptp/index.html
  - https://tsn.readthedocs.io/timesync.html
