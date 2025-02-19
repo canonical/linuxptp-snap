@@ -95,9 +95,6 @@ apps:
       - ptp
       # Access to system date and time
       - time-control
-      # Access to system logs and data
-      - system-backup
-      - log-observe
 
   phc2sys:
     command: usr/local/sbin/phc2sys
@@ -109,9 +106,6 @@ apps:
       - ptp
       # Access to system date and time
       - time-control
-      # Access to system logs and data
-      - system-backup
-      - log-observe
 
   pmc:
     command: usr/local/sbin/pmc
@@ -153,9 +147,6 @@ apps:
       - ptp
       # Access to system date and time
       - time-control
-      # Access to read system logs and data
-      - system-backup
-      - log-observe
 
   tz2alt:
     command: usr/local/sbin/tz2alt
